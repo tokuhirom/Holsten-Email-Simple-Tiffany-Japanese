@@ -1,0 +1,4 @@
+Subject: [% name %]様こんにちは
+
+よろしくね
+http://example.com/token=[% token %]

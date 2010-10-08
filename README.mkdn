@@ -1,14 +1,35 @@
 # NAME
 
-Holsten::Email::Simple::Tiffany::Japanese -
+Holsten::Email::Simple::Tiffany::Japanese - 日本語でメールを送信するときに楽するライブラリ
 
 # SYNOPSIS
 
-  use Holsten::Email::Simple::Tiffany::Japanese;
+    use Holsten::Email::Simple::Tiffany::Japanese;
+    use Email::Sender::Simple qw/sendmail/;
+
+    my $estj = Holsten::Email::Simple::Tiffany::Japanese->new(
+        'Text::Xslate' => {
+            syntax => 'TTerse',
+            path   => ['./email_tmpl/'],
+        },
+    );
+    my $email = $estj->render('foo.eml', {token => $token});
+    sendmail($email);
 
 # DESCRIPTION
 
-Holsten::Email::Simple::Tiffany::Japanese is
+日本語でメールを送信できます。
+
+テンプレートファイルには
+
+    Subject: [% name %]様へお特な情報のご案内
+
+    おとくですよ！
+    http://example.com[% path_info %]
+
+のようにかくことができます。
+
+最初のヘッダ行はなくてもかまいません。
 
 # AUTHOR
 
