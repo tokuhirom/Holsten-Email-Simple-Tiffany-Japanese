@@ -3,6 +3,7 @@ name 'Holsten-Email-Simple-Tiffany-Japanese';
 all_from 'lib/Holsten/Email/Simple/Tiffany/Japanese.pm';
 
 requires 'Email::Simple';
+requires 'Email::Date::Format';
 requires 'Encode';
 requires 'Tiffany';
 

@@ -6,7 +6,7 @@ our $VERSION = '0.01';
 use Tiffany;
 use Encode ();
 use Email::Simple;
-use Email::Simple::Creator;
+use Email::Date::Format;
 
 sub new {
     my ( $class, $name, $args ) = @_;
@@ -30,7 +30,7 @@ sub render {
     my $body = Encode::encode( 'iso-2022-jp', join( "\n", @lines ) );
 
     return Email::Simple->create(
-        header     => \@headers,
+        header     => @headers ? \@headers : [Date => Email::Date::Format::email_date()],
         body       => $body,
         attributes => {
             content_type => 'text/plain',
