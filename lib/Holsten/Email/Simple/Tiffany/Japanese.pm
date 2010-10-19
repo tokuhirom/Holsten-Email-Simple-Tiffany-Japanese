@@ -2,7 +2,7 @@ package Holsten::Email::Simple::Tiffany::Japanese;
 use strict;
 use warnings;
 use 5.00800;
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 use Tiffany;
 use Encode ();
 use Email::Simple;
@@ -16,8 +16,9 @@ sub new {
 
 sub render {
     my ( $self, $tmpl, $args ) = @_;
+    $args ||= +{};
 
-    my @lines = split /\n/, $self->{tiffany}->render( $tmpl, {%$args || +{}} );
+    my @lines = split /\n/, $self->{tiffany}->render( $tmpl, {%$args} );
     my @headers;
     while ( @lines > 0 && $lines[0] =~ /^([A-Z][A-Za-z_-]+)\s*:\s*(.+?)$/ ) {
         my ( $key, $val ) = ( $1, $2 );
