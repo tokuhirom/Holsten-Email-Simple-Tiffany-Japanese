@@ -17,7 +17,7 @@ sub new {
 sub render {
     my ( $self, $tmpl, $args ) = @_;
 
-    my @lines = split /\n/, $self->{tiffany}->render( $tmpl, {%$args} );
+    my @lines = split /\n/, $self->{tiffany}->render( $tmpl, {%$args || +{}} );
     my @headers;
     while ( @lines > 0 && $lines[0] =~ /^([A-Z][A-Za-z_-]+)\s*:\s*(.+?)$/ ) {
         my ( $key, $val ) = ( $1, $2 );
